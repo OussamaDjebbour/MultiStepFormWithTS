@@ -3,7 +3,7 @@ import ButtonStep from '../ui/ButtonStep';
 import FormContainer from './FormContainer';
 
 function AppLayout() {
-  const [step, setStep] = useState<number>(2);
+  const [step, setStep] = useState<number>(1);
 
   return (
     <main className="bg-image-mobile mb-10 flex flex-col items-center justify-between bg-contain bg-no-repeat">
