@@ -1,10 +1,4 @@
-import {
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-  useMemo,
-  useState,
-} from 'react';
+import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
 import Footer from '../ui/Footer';
 import FormStep1 from '../ui/FormStep1';
 import FormStep2 from '../ui/FormStep2';
@@ -36,13 +30,6 @@ function FormContainer({ step, setStep }: FormContainerProps) {
     checkboxInfo: [],
     totalPrice: 0,
   });
-
-  const memoizedselectedCheckbox = useMemo(
-    () => selectedCheckbox.checkboxInfo,
-    [selectedCheckbox.checkboxInfo],
-  );
-
-  console.log('selectedRadio', selectedRadio);
 
   function handleRadioChange(e: ChangeEvent<HTMLInputElement>, price: number) {
     setSelectedRadio({ title: e.target.value, price: price });
