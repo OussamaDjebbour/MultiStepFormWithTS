@@ -5,7 +5,6 @@ import LabelAndErrorInput from './LabelAndErrorInput';
 interface FormStep1Props {
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors<FieldValues>;
-  // errors: ReactNode;
 }
 
 function FormStep1({ register, errors }: FormStep1Props) {

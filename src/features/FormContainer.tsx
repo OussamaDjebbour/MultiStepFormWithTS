@@ -5,44 +5,21 @@ import {
   useMemo,
   useState,
 } from 'react';
-import Footer from './Footer';
-import FormStep1 from './FormStep1';
-import FormStep2 from './FormStep2';
-import FormStep3 from './FormStep3';
-import FormStep4 from './FormStep4';
-import FinalStep from './FinalStep';
-import {
-  FieldErrors,
-  FieldValues,
-  SubmitHandler,
-  useForm,
-} from 'react-hook-form';
+import Footer from '../ui/Footer';
+import FormStep1 from '../ui/FormStep1';
+import FormStep2 from '../ui/FormStep2';
+import FormStep3 from '../ui/FormStep3';
+import FormStep4 from '../ui/FormStep4';
+import FinalStep from '../ui/FinalStep';
+import { FieldErrors, FieldValues, useForm } from 'react-hook-form';
 
 interface FormContainerProps {
   step: number;
   setStep: Dispatch<SetStateAction<number>>;
 }
 
-interface FormData {
-  // Define the expected shape of the data object here
-  name: string;
-  email: string;
-  phone: number;
-}
-interface ErrorData {
-  // Define the expected shape of the data object here
-  name: string;
-  email: string;
-  phone: number;
-}
-
 function FormContainer({ step, setStep }: FormContainerProps) {
-  // const [state, setState1] = useState<State>({ isYearlyChecked: false });
   const [isYearlyChecked, setIsYearlyChecked] = useState<boolean>(false);
-
-  // console.log('isYearlyCheckedChangeeeeee1', isYearlyChecked);
-
-  // const [step, setStep] = useState<number>(1); // const [step, setStep] = useState<number>(1);
 
   const [selectedRadio, setSelectedRadio] = useState<{
     title: string;
@@ -53,32 +30,17 @@ function FormContainer({ step, setStep }: FormContainerProps) {
   });
 
   const [selectedCheckbox, setSelectedCheckbox] = useState<{
-    // titles: string[];
-    // prices: number[];
-    // checkboxInfo: [
-    //   {
-    //     title: string;
-    //     price: number;
-    //   },
-    // ];
     checkboxInfo: { title: string; price: number }[];
     totalPrice: number;
   }>({
-    // titles: [],
-    // prices: [],
-    checkboxInfo: [
-      // {
-      //   title: '',
-      //   price: 0,
-      // },
-    ],
+    checkboxInfo: [],
     totalPrice: 0,
   });
 
-  // const memoizedselectedCheckbox = useMemo(
-  //   () => selectedCheckbox.titles,
-  //   [selectedCheckbox.titles],
-  // );
+  const memoizedselectedCheckbox = useMemo(
+    () => selectedCheckbox.checkboxInfo,
+    [selectedCheckbox.checkboxInfo],
+  );
 
   console.log('selectedRadio', selectedRadio);
 
@@ -109,7 +71,7 @@ function FormContainer({ step, setStep }: FormContainerProps) {
     console.log('errors', errors);
   }
 
-  function handleClick() {
+  function handleFormClick() {
     handleSubmit(onSubmit, onError)();
   }
 
@@ -148,9 +110,7 @@ function FormContainer({ step, setStep }: FormContainerProps) {
           setStep={setStep}
           nextStep={nextStep}
           prevStep={prevStep}
-          handleClick={handleClick}
-
-          // onError={onError}
+          handleFormClick={handleFormClick}
         />
       )}
     </form>

@@ -1,15 +1,17 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     fontFamily: {
       sans: 'Ubuntu',
     },
+    screens: {
+      md: '680px',
+    },
     extend: {
       backgroundImage: {
-        'hero-pattern': "url('./src/assets/images/bg-sidebar-desktop.svg')",
-        'hero-pattern-mobile':
-          "url('./src/assets/images/bg-sidebar-mobile.svg')",
+        'image-desktop': "url('./src/assets/images/bg-sidebar-desktop.svg')",
+        'image-mobile': "url('./src/assets/images/bg-sidebar-mobile.svg')",
       },
       colors: {
         // Primary

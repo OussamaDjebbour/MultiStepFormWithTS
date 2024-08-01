@@ -11,7 +11,6 @@ interface selectedRadio {
 interface Step2Props {
   isYearlyChecked: boolean;
   setIsYearlyChecked: React.Dispatch<SetStateAction<boolean>>;
-  // selectedRadio: object;
   selectedRadio: selectedRadio;
   handleRadioChange: (e: ChangeEvent<HTMLInputElement>, price: number) => void;
   setSelectedRadio: Dispatch<SetStateAction<selectedRadio>>;
@@ -24,8 +23,6 @@ function FormStep2({
   handleRadioChange,
   setSelectedRadio,
 }: Step2Props) {
-  console.log('selectedRadio', selectedRadio);
-
   return (
     <section>
       <Heading as="h1" title="Select your plan" />

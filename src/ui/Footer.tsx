@@ -7,15 +7,12 @@ interface FooterProps {
   step: number;
   nextStep: () => void;
   prevStep: () => void;
-  handleClick: SubmitHandler<FieldValues>;
+  handleFormClick: SubmitHandler<FieldValues>;
 }
 
-function Footer({ step, nextStep, prevStep, handleClick }: FooterProps) {
+function Footer({ step, prevStep, handleFormClick }: FooterProps) {
   return createPortal(
-    // absolute bottom-0 mt-auto flex w-[95%] justify-between
     <div className="mt-auto flex w-full items-center justify-between bg-white p-5">
-      {/* <span className="font-[500] text-cool-gray">Go Back</span> */}
-      {/* <input className="cursor-pointer" type="submit" value="Next up" /> */}
       {step > 1 ? (
         <button
           type="button"
@@ -29,7 +26,7 @@ function Footer({ step, nextStep, prevStep, handleClick }: FooterProps) {
       )}
       <button
         type="submit"
-        onClick={handleClick}
+        onClick={handleFormClick}
         className="cursor-pointer bg-marine-blue px-4 py-2 text-White hover:bg-purplish-blue"
       >
         {step === 4 ? 'Confirm' : 'Next Step'}

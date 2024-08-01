@@ -1,5 +1,5 @@
 type PropsHeading = {
-  as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
+  as: 'h1' | 'h2' | 'h3' | 'h4';
   title: string;
 
   //   titleH2?: string;
@@ -20,9 +20,8 @@ function Heading({ as, title }: PropsHeading) {
         <h2 className="text-lg font-bold text-marine-blue">{title}</h2>
       )}
 
-      {as === 'h4' && <h4 className="font-bold text-marine-blue">{title}</h4>}
-      {as === 'h5' && (
-        <h5 className="text-sm font-bold text-marine-blue">{title}</h5>
+      {as === 'h4' && (
+        <h4 className="text-sm font-bold text-marine-blue">{title}</h4>
       )}
     </>
   );

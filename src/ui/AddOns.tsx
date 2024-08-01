@@ -1,11 +1,4 @@
-import {
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import { ChangeEvent, Dispatch, SetStateAction, useEffect } from 'react';
 import Heading from './Heading';
 
 interface selectedCheckbox {
@@ -35,38 +28,39 @@ function AddOns({
   setSelectedCheckbox,
 }: AddOnsProps) {
   function handleCheckboxChange(e: ChangeEvent<HTMLInputElement>) {
-    const data = e.target.getAttribute('data-titleAndPrice');
+    const data = e.target.getAttribute('data-titleandprice');
     const parsedData = data ? JSON.parse(data) : null;
 
     if (e.target.checked) {
-      setSelectedCheckbox((obj) => ({
-        ...obj,
-        checkboxInfo: [...obj.checkboxInfo, { title, price }],
-        totalPrice: obj.totalPrice + price,
+      setSelectedCheckbox((box) => ({
+        ...box,
+        checkboxInfo: [...box.checkboxInfo, { title, price }],
+        totalPrice: box.totalPrice + price,
       }));
     } else {
-      setSelectedCheckbox((obj) => ({
-        ...obj,
-        checkboxInfo: obj.checkboxInfo.filter((prc) => {
+      setSelectedCheckbox((box) => ({
+        ...box,
+        checkboxInfo: box.checkboxInfo.filter((boxInfo) => {
           return (
-            prc.price !== parsedData.price || parsedData.title !== prc.title
+            boxInfo.price !== parsedData.price ||
+            parsedData.title !== boxInfo.title
           );
         }),
-        totalPrice: obj.totalPrice - price,
+        totalPrice: box.totalPrice - price,
       }));
     }
   }
 
   useEffect(() => {
-    setSelectedCheckbox((obj) => ({
-      ...obj,
-      checkboxInfo: obj.checkboxInfo.map((el) => {
+    setSelectedCheckbox((box) => ({
+      ...box,
+      checkboxInfo: box.checkboxInfo.map((boxInfo) => {
         return {
-          ...el,
-          ...(title === el.title ? { price } : {}),
+          ...boxInfo,
+          ...(title === boxInfo.title ? { price } : {}),
         };
       }),
-      totalPrice: obj.checkboxInfo.reduce((acc, curr) => acc + curr.price, 0),
+      totalPrice: box.checkboxInfo.reduce((acc, curr) => acc + curr.price, 0),
     }));
   }, [setSelectedCheckbox, price, title]);
 
@@ -81,7 +75,7 @@ function AddOns({
           id={title}
           name="select"
           value={title}
-          data-titleAndPrice={JSON.stringify({ title: title, price: price })}
+          data-titleandprice={JSON.stringify({ title: title, price: price })}
           defaultChecked={
             selectedCheckbox &&
             selectedCheckbox.checkboxInfo.some((slt) => slt.title === title)
@@ -95,7 +89,7 @@ function AddOns({
         </span>
 
         <div>
-          <Heading as="h5" title={title} />
+          <Heading as="h4" title={title} />
           <p className="text-xs text-cool-gray">{text}</p>
         </div>
 

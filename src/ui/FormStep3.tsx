@@ -1,14 +1,8 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import AddOns from './AddOns';
 import Heading from './Heading';
 
 interface selectedCheckbox {
-  // titles: string[];
-  // prices: number[];
-  // checkboxInfo: {
-  //   title: string;
-  //   price: number;
-  // };
   checkboxInfo: { title: string; price: number }[];
   totalPrice: number;
 }
@@ -16,29 +10,19 @@ interface selectedCheckbox {
 interface Step3Props {
   isYearlyChecked: boolean;
   selectedCheckbox: selectedCheckbox;
-  // setSelectedCheckbox: Dispatch<SetStateAction<selectedCheckbox>>;
+
   setSelectedCheckbox: Dispatch<
     SetStateAction<{
       checkboxInfo: { title: string; price: number }[];
       totalPrice: number;
     }>
   >;
-  // setSelectedCheckbox: Dispatch<
-  //   SetStateAction<{
-  //     checkboxInfo: [{ title: string; price: number }];
-  //     totalPrice: number;
-  //   }>
-  // >;
-  // memoizedselectedCheckbox?: string[];
 }
-
-// function FormStep3({ isYearlyChecked }: { isYearlyChecked: boolean }){
 
 function FormStep3({
   isYearlyChecked,
   selectedCheckbox,
   setSelectedCheckbox,
-  // memoizedselectedCheckbox,
 }: Step3Props) {
   return (
     <section>
@@ -53,8 +37,6 @@ function FormStep3({
           isYearlyChecked={isYearlyChecked}
           selectedCheckbox={selectedCheckbox}
           setSelectedCheckbox={setSelectedCheckbox}
-          // // memoizedselectedCheckbox={memoizedselectedCheckbox}
-          // checked={isRadioChecked}
         />
         <AddOns
           title="Larger storage"
@@ -63,7 +45,6 @@ function FormStep3({
           isYearlyChecked={isYearlyChecked}
           selectedCheckbox={selectedCheckbox}
           setSelectedCheckbox={setSelectedCheckbox}
-          // // memoizedselectedCheckbox={memoizedselectedCheckbox}
         />
         <AddOns
           title="Customizable profile"
@@ -72,12 +53,9 @@ function FormStep3({
           isYearlyChecked={isYearlyChecked}
           selectedCheckbox={selectedCheckbox}
           setSelectedCheckbox={setSelectedCheckbox}
-          // // memoizedselectedCheckbox={memoizedselectedCheckbox}
         />
       </div>
     </section>
-
-    // </form>
   );
 }
 
