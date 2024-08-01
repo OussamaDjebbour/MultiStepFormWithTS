@@ -1,20 +1,46 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import AddOns from './AddOns';
 import Heading from './Heading';
 
+interface selectedCheckbox {
+  // titles: string[];
+  // prices: number[];
+  // checkboxInfo: {
+  //   title: string;
+  //   price: number;
+  // };
+  checkboxInfo: { title: string; price: number }[];
+  totalPrice: number;
+}
+
 interface Step3Props {
   isYearlyChecked: boolean;
+  selectedCheckbox: selectedCheckbox;
+  // setSelectedCheckbox: Dispatch<SetStateAction<selectedCheckbox>>;
+  setSelectedCheckbox: Dispatch<
+    SetStateAction<{
+      checkboxInfo: { title: string; price: number }[];
+      totalPrice: number;
+    }>
+  >;
+  // setSelectedCheckbox: Dispatch<
+  //   SetStateAction<{
+  //     checkboxInfo: [{ title: string; price: number }];
+  //     totalPrice: number;
+  //   }>
+  // >;
+  // memoizedselectedCheckbox?: string[];
 }
 
 // function FormStep3({ isYearlyChecked }: { isYearlyChecked: boolean }){
 
-function FormStep3({ isYearlyChecked }: Step3Props) {
-  console.log('isYearlyChecked', isYearlyChecked);
-
-  const [isRadioChecked, setIsRadioChecked] = useState(true);
-
+function FormStep3({
+  isYearlyChecked,
+  selectedCheckbox,
+  setSelectedCheckbox,
+  // memoizedselectedCheckbox,
+}: Step3Props) {
   return (
-    // <form className="w-[90%] rounded-xl bg-white px-5 py-8 min-[500px]:w-[80%]">
     <section>
       <Heading as="h1" title="Pick add-ons" />
       <Heading as="h2" title="Add-ons help enhance your gaming experience." />
@@ -25,6 +51,9 @@ function FormStep3({ isYearlyChecked }: Step3Props) {
           text="Access to multiplayer games"
           price={!isYearlyChecked ? 1 : 10}
           isYearlyChecked={isYearlyChecked}
+          selectedCheckbox={selectedCheckbox}
+          setSelectedCheckbox={setSelectedCheckbox}
+          // // memoizedselectedCheckbox={memoizedselectedCheckbox}
           // checked={isRadioChecked}
         />
         <AddOns
@@ -32,12 +61,18 @@ function FormStep3({ isYearlyChecked }: Step3Props) {
           text="Extra 1TB of cloud save"
           price={!isYearlyChecked ? 2 : 20}
           isYearlyChecked={isYearlyChecked}
+          selectedCheckbox={selectedCheckbox}
+          setSelectedCheckbox={setSelectedCheckbox}
+          // // memoizedselectedCheckbox={memoizedselectedCheckbox}
         />
         <AddOns
           title="Customizable profile"
           text="Custom theme on your profile"
           price={!isYearlyChecked ? 2 : 20}
           isYearlyChecked={isYearlyChecked}
+          selectedCheckbox={selectedCheckbox}
+          setSelectedCheckbox={setSelectedCheckbox}
+          // // memoizedselectedCheckbox={memoizedselectedCheckbox}
         />
       </div>
     </section>

@@ -1,71 +1,96 @@
-import { useState } from 'react';
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import Heading from './Heading';
 
-type AddOnsProps = {
-  //   title: string;
+interface selectedCheckbox {
+  checkboxInfo: { title: string; price: number }[];
+  totalPrice: number;
+}
+
+interface AddOnsProps {
   title: string;
   price: number;
   text: string;
   isYearlyChecked: boolean;
-};
-function AddOns({ title, price, text, isYearlyChecked }: AddOnsProps) {
-  // const [isRadioChecked, setIsRadioChecked] = useState(true);
+  selectedCheckbox: selectedCheckbox;
+  setSelectedCheckbox: Dispatch<
+    SetStateAction<{
+      checkboxInfo: { title: string; price: number }[];
+      totalPrice: number;
+    }>
+  >;
+}
+function AddOns({
+  title,
+  price,
+  text,
+  isYearlyChecked,
+  selectedCheckbox,
+  setSelectedCheckbox,
+}: AddOnsProps) {
+  function handleCheckboxChange(e: ChangeEvent<HTMLInputElement>) {
+    const data = e.target.getAttribute('data-titleAndPrice');
+    const parsedData = data ? JSON.parse(data) : null;
+
+    if (e.target.checked) {
+      setSelectedCheckbox((obj) => ({
+        ...obj,
+        checkboxInfo: [...obj.checkboxInfo, { title, price }],
+        totalPrice: obj.totalPrice + price,
+      }));
+    } else {
+      setSelectedCheckbox((obj) => ({
+        ...obj,
+        checkboxInfo: obj.checkboxInfo.filter((prc) => {
+          return (
+            prc.price !== parsedData.price || parsedData.title !== prc.title
+          );
+        }),
+        totalPrice: obj.totalPrice - price,
+      }));
+    }
+  }
+
+  useEffect(() => {
+    setSelectedCheckbox((obj) => ({
+      ...obj,
+      checkboxInfo: obj.checkboxInfo.map((el) => {
+        return {
+          ...el,
+          ...(title === el.title ? { price } : {}),
+        };
+      }),
+      totalPrice: obj.checkboxInfo.reduce((acc, curr) => acc + curr.price, 0),
+    }));
+  }, [setSelectedCheckbox, price, title]);
 
   return (
-    // <div>
-    //   <label
-    //     htmlFor={title}
-    //     className="flex items-center justify-between rounded-xl border-2 border-solid border-light-gray px-3 py-2 hover:cursor-pointer focus:outline-none peer-checked:border-cool-gray peer-has-[:checked]:bg-red-400"
-    //   >
-    //     <div className="peer flex items-center gap-3">
-    //       <input
-    //         type="checkbox"
-    //         id={title}
-    //         name="select"
-    //         className="peer h-[1.15em] w-[1.15em]"
-    //         defaultChecked={title === 'Arcade'}
-    //       />
-    //       {/* <img className="mb-auto w-12" src={icon} alt="Icon" /> */}
-    //       <div>
-    //         <Heading as="h5" title={title} />
-    //         <p className="text-xs text-cool-gray">{text}</p>
-    //         {/* {isYearlyChecked && <p className="text-marine-blue">2 months free</p>} */}
-    //       </div>
-    //     </div>
-    //     <span className="font-[500] text-cool-gray">
-    //       +${price}/{!isYearlyChecked ? 'mo' : 'yr'}
-    //     </span>
-    //   </label>
-    // </div>
-
     <div>
       <label
         htmlFor={title}
-        className="flex items-center gap-3 rounded-xl border-2 border-solid border-light-gray px-3 py-2 hover:cursor-pointer has-[:checked]:border-cool-gray has-[:checked]:bg-Alabaster"
+        className="flex items-center gap-3 rounded-xl border-2 border-solid border-light-gray px-3 py-2 hover:cursor-pointer hover:border-cool-gray has-[:checked]:border-cool-gray has-[:checked]:bg-Alabaster"
       >
         <input
           type="checkbox"
           id={title}
           name="select"
-          // checked={isRadioChecked}
+          value={title}
+          data-titleAndPrice={JSON.stringify({ title: title, price: price })}
+          defaultChecked={
+            selectedCheckbox &&
+            selectedCheckbox.checkboxInfo.some((slt) => slt.title === title)
+          }
+          onChange={handleCheckboxChange}
           className="peer hidden h-[1.15em] w-[1.15em] border-light-gray before:rounded-full checked:bg-red-500"
         />
 
         <span className="flex h-5 w-5 items-center justify-center rounded border-2 border-light-gray peer-checked:border-purplish-blue peer-checked:bg-purplish-blue">
-          {/* <svg
-            className="hidden h-3 w-3 text-white peer-checked:block"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M5 13l4 4L19 7"
-            ></path>
-          </svg> */}
           <img src="/src/assets/images/icon-checkmark.svg" alt="Check Icon" />
         </span>
 

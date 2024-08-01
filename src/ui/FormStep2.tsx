@@ -1,5 +1,5 @@
-import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
-import Footer from './Footer';
+import { ChangeEvent, Dispatch, SetStateAction } from 'react';
+
 import Heading from './Heading';
 import PlanRadioBtn from './PlanRadioBtn';
 
@@ -12,18 +12,11 @@ interface Step2Props {
   isYearlyChecked: boolean;
   setIsYearlyChecked: React.Dispatch<SetStateAction<boolean>>;
   // selectedRadio: object;
-  selectedRadio?: selectedRadio;
+  selectedRadio: selectedRadio;
   handleRadioChange: (e: ChangeEvent<HTMLInputElement>, price: number) => void;
   setSelectedRadio: Dispatch<SetStateAction<selectedRadio>>;
 }
 
-// function FormStep2({
-//   isYearlyChecked,
-//   setIsYearlyChecked,
-// }: {
-//   isYearlyChecked: boolean;
-//   setIsYearlyChecked: React.Dispatch<SetStateAction<boolean>>;
-// })
 function FormStep2({
   isYearlyChecked,
   setIsYearlyChecked,
@@ -31,34 +24,9 @@ function FormStep2({
   handleRadioChange,
   setSelectedRadio,
 }: Step2Props) {
-  // const [selectedRadio, setSelectedRadio] = useState<string>('');
-
   console.log('selectedRadio', selectedRadio);
-  console.log('isYearlyCheckedChangeeeeee2', isYearlyChecked);
-
-  // function handleRadioChange(e: ChangeEvent<HTMLInputElement>) {
-  //   setSelectedRadio(e.target.value);
-  // }
 
   return (
-    // <form className="w-[90%] rounded-xl bg-white px-5 py-8 min-[500px]:w-[80%]">
-    //   <Heading as="h1" title="Select your plan" />
-    //   <Heading
-    //     as="h2"
-    //     title="You have the option of monthly or yearly billing."
-    //   />
-
-    //   <div className="flex flex-col gap-2.5">
-    //     <Plan title="Arcade" icon="src/assets/images/icon-arcade.svg" />
-    //     <Plan title="Advanced" icon="src/assets/images/icon-advanced.svg" />
-    //     <Plan title="Pro" icon="src/assets/images/icon-pro.svg" />
-    //     <input type="checkbox" />
-    //   </div>
-    //   <Footer />
-    // </form>
-    // <>
-    //  <div>
-
     <section>
       <Heading as="h1" title="Select your plan" />
       <Heading
@@ -131,7 +99,6 @@ function FormStep2({
           </div>
         </div>
       </div>
-      {/* <Footer /> */}
     </section>
 
     // <fieldset>

@@ -1,12 +1,13 @@
 type ButtonStepProps = {
-  content: string;
+  content: number;
+  step: number;
 };
 
-function ButtonStep({ content }: ButtonStepProps) {
+function ButtonStep({ content, step }: ButtonStepProps) {
   return (
     <li>
       <button
-        className={`flex h-10 w-10 items-center justify-center rounded-full border-2 border-light-gray text-White ${content === '1' ? 'bg-red-500' : 'bg-marine-blue'} `}
+        className={`flex h-10 w-10 items-center justify-center rounded-full border-2 border-light-gray text-White ${content === step || (step > 4 && content === 4) ? 'border-light-blue bg-light-blue font-bold text-marine-blue' : ''} `}
       >
         {content}
       </button>
