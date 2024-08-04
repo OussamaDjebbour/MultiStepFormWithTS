@@ -68,7 +68,7 @@ function AddOns({
     <div>
       <label
         htmlFor={title}
-        className="flex items-center gap-3 rounded-xl border-2 border-solid border-light-gray px-3 py-2 hover:cursor-pointer hover:border-cool-gray has-[:checked]:border-cool-gray has-[:checked]:bg-Alabaster"
+        className="flex items-center gap-3 rounded-xl border-2 border-solid border-light-gray px-3 py-2 hover:cursor-pointer hover:border-cool-gray has-[:checked]:border-cool-gray has-[:checked]:bg-Alabaster min-[600px]:gap-5"
       >
         <input
           type="checkbox"
@@ -90,7 +90,7 @@ function AddOns({
 
         <div>
           <Heading as="h4" title={title} />
-          <p className="text-xs text-cool-gray">{text}</p>
+          <p className="text-xs text-cool-gray md:text-base">{text}</p>
         </div>
 
         <span className="ml-auto font-[500] text-cool-gray">

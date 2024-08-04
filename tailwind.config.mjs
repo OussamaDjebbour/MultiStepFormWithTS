@@ -6,7 +6,7 @@ export default {
       sans: 'Ubuntu',
     },
     screens: {
-      md: '680px',
+      md: '800px',
     },
     extend: {
       backgroundImage: {

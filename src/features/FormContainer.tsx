@@ -5,14 +5,29 @@ import FormStep2 from '../ui/FormStep2';
 import FormStep3 from '../ui/FormStep3';
 import FormStep4 from '../ui/FormStep4';
 import FinalStep from '../ui/FinalStep';
-import { FieldErrors, FieldValues, useForm } from 'react-hook-form';
+import {
+  FieldErrors,
+  FieldValues,
+  SubmitHandler,
+  useForm,
+  UseFormRegister,
+} from 'react-hook-form';
 
 interface FormContainerProps {
   step: number;
   setStep: Dispatch<SetStateAction<number>>;
+  // handleFormClick?: SubmitHandler<FieldValues>;
+  // register: UseFormRegister<FieldValues>;
+  // errors: FieldErrors<FieldValues>;
 }
 
-function FormContainer({ step, setStep }: FormContainerProps) {
+function FormContainer({
+  step,
+  setStep,
+  // handleFormClick,
+  // register,
+  // errors,
+}: FormContainerProps) {
   const [isYearlyChecked, setIsYearlyChecked] = useState<boolean>(false);
 
   const [selectedRadio, setSelectedRadio] = useState<{
@@ -63,7 +78,7 @@ function FormContainer({ step, setStep }: FormContainerProps) {
   }
 
   return (
-    <form className="w-[92%] rounded-xl bg-White px-5 py-8 min-[500px]:w-[80%]">
+    <form className="w-[92%] rounded-xl bg-White px-5 py-8 min-[500px]:w-[80%] min-[600px]:w-4/6 md:m-auto md:flex md:h-full md:min-w-[400px] md:flex-col md:px-0 md:py-0 md:pt-12">
       {step === 1 && <FormStep1 register={register} errors={errors} />}
       {step === 2 && (
         <FormStep2

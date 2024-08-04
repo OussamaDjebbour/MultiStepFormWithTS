@@ -9,7 +9,9 @@ function Heading({ as, title }: PropsHeading) {
   return (
     <>
       {as === 'h1' && (
-        <h1 className="text-2xl font-bold text-marine-blue"> {title} </h1>
+        <h1 className="text-2xl font-bold text-marine-blue md:text-3xl">
+          {title}
+        </h1>
       )}
 
       {as === 'h2' && (
@@ -21,7 +23,9 @@ function Heading({ as, title }: PropsHeading) {
       )}
 
       {as === 'h4' && (
-        <h4 className="text-sm font-bold text-marine-blue">{title}</h4>
+        <h4 className="text-sm font-bold text-marine-blue min-[500px]:text-base min-[600px]:text-lg">
+          {title}
+        </h4>
       )}
     </>
   );

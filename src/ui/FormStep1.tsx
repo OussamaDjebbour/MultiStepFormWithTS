@@ -23,7 +23,7 @@ function FormStep1({ register, errors }: FormStep1Props) {
             errorMessage={errors?.name?.message as string}
           />
           <input
-            className={`w-full rounded-lg border border-light-gray px-4 py-1 outline-0 hover:cursor-pointer hover:border-marine-blue ${errors?.name?.message ? 'border-strawberry-red' : ''} `}
+            className={`w-full rounded-lg border border-light-gray px-4 py-1 outline-0 hover:cursor-pointer hover:border-marine-blue md:py-2 ${errors?.name?.message ? 'border-strawberry-red' : ''} `}
             type="text"
             id="name"
             autoFocus
@@ -40,7 +40,7 @@ function FormStep1({ register, errors }: FormStep1Props) {
             errorMessage={errors?.email?.message as string}
           />
           <input
-            className={`w-full rounded-lg border border-light-gray px-4 py-1 outline-0 hover:cursor-pointer hover:border-marine-blue ${errors?.email?.message ? 'border-strawberry-red' : ''} `}
+            className={`w-full rounded-lg border border-light-gray px-4 py-1 outline-0 hover:cursor-pointer hover:border-marine-blue md:py-2 ${errors?.email?.message ? 'border-strawberry-red' : ''} `}
             type="email"
             id="email"
             placeholder="e.g. stephenking@lorem.com"
@@ -60,7 +60,7 @@ function FormStep1({ register, errors }: FormStep1Props) {
             errorMessage={errors?.phone?.message as string}
           />
           <input
-            className={`w-full rounded-lg border border-light-gray px-4 py-1 outline-0 hover:cursor-pointer hover:border-marine-blue ${errors?.phone?.message ? 'border-strawberry-red' : ''} `}
+            className={`w-full rounded-lg border border-light-gray px-4 py-1 outline-0 hover:cursor-pointer hover:border-marine-blue md:py-2 ${errors?.phone?.message ? 'border-strawberry-red' : ''} `}
             type="tel"
             id="phone"
             placeholder="e.g. 1 234 145 789"

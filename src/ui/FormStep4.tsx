@@ -38,7 +38,7 @@ function FormStep4({
         title="Double-check everything looks OK before confirming. "
       />
 
-      <div className="rounded-xl bg-Magnolia p-4">
+      <div className="rounded-xl bg-Magnolia p-4 md:mt-8">
         <div className="flex items-center justify-between border-b-2 pb-2 text-base">
           <div>
             <p className="font-bold text-marine-blue">

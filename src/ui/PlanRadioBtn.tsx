@@ -33,7 +33,7 @@ function PlanRadioBtn({
   }, [price, setSelectedRadio, title]);
 
   return (
-    <div>
+    <div className="md:w-[30%] min-[1000px]:w-[150px]">
       <input
         type="radio"
         id={title}
@@ -47,7 +47,8 @@ function PlanRadioBtn({
       />
       <label
         htmlFor={title}
-        className="flex gap-6 rounded-xl border-2 border-solid border-light-gray p-4 hover:cursor-pointer hover:border-cool-gray focus:outline-none peer-checked:border-cool-gray peer-checked:bg-Alabaster"
+        // md:px-8 md:py-6
+        className="flex gap-6 rounded-xl border-2 border-solid border-light-gray p-4 hover:cursor-pointer hover:border-cool-gray focus:outline-none peer-checked:border-cool-gray peer-checked:bg-Alabaster md:flex-col md:gap-6"
       >
         <img className="mb-auto w-12" src={icon} alt="Icon" />
         <div>
@@ -55,7 +56,9 @@ function PlanRadioBtn({
           <p className="text-cool-gray">
             ${price}/{!isYearlyChecked ? 'mo' : 'yr'}
           </p>
-          {isYearlyChecked && <p className="text-marine-blue">2 months free</p>}
+          {isYearlyChecked && (
+            <p className="text-sm text-marine-blue">2 months free</p>
+          )}
         </div>
       </label>
     </div>
