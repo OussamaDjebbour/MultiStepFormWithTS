@@ -1,8 +1,6 @@
 type PropsHeading = {
   as: 'h1' | 'h2' | 'h3' | 'h4';
   title: string;
-
-  //   titleH2?: string;
 };
 
 function Heading({ as, title }: PropsHeading) {

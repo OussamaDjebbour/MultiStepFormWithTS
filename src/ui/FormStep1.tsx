@@ -16,7 +16,7 @@ function FormStep1({ register, errors }: FormStep1Props) {
         title="Please provide your name, email address, and phone number."
       />
 
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-5">
         <div>
           <LabelAndErrorInput
             labelName="Name"

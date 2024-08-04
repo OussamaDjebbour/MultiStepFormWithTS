@@ -47,7 +47,6 @@ function PlanRadioBtn({
       />
       <label
         htmlFor={title}
-        // md:px-8 md:py-6
         className="flex gap-6 rounded-xl border-2 border-solid border-light-gray p-4 hover:cursor-pointer hover:border-cool-gray focus:outline-none peer-checked:border-cool-gray peer-checked:bg-Alabaster md:flex-col md:gap-6"
       >
         <img className="mb-auto w-12" src={icon} alt="Icon" />

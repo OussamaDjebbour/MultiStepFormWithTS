@@ -102,7 +102,3 @@ function AddOns({
 }
 
 export default AddOns;
-
-{
-  /* <span className="[clip-path:polygon(28%_38%,41%_53%,75%_24%,86%_38%,40%_78%,15%_50%)]"></span> */
-}

@@ -1,41 +1,16 @@
-import { useEffect, useState } from 'react';
-
 type ButtonStepProps = {
   content: number;
   step: number;
 };
 
 function ButtonStep({ content, step }: ButtonStepProps) {
-  // const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
-
-  // const handleResize = () => {
-  //   setIsMobile(window.innerWidth < 800);
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener('resize', handleResize);
-  //   return () => {
-  //     window.removeEventListener('resize', handleResize);
-  //   };
-  // }, []);
   return (
-    // <li>
     <button
       className={`flex h-10 w-10 items-center justify-center rounded-full border-2 border-light-gray text-White ${content === step || (step > 4 && content === 4) ? 'border-light-blue bg-light-blue font-bold text-marine-blue' : ''} `}
     >
       {content}
     </button>
-    //  </li>
   );
-  // : (
-  //   <li>
-  //     <button
-  //       className={`flex h-10 w-10 items-center justify-center rounded-full border-2 border-light-gray text-White ${content === step || (step > 4 && content === 4) ? 'border-light-blue bg-light-blue font-bold text-marine-blue' : ''} `}
-  //     >
-  //       {content}
-  //     </button>
-  //   </li>
-  // );
 }
 
 export default ButtonStep;

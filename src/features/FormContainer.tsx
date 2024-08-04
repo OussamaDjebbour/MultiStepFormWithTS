@@ -5,29 +5,14 @@ import FormStep2 from '../ui/FormStep2';
 import FormStep3 from '../ui/FormStep3';
 import FormStep4 from '../ui/FormStep4';
 import FinalStep from '../ui/FinalStep';
-import {
-  FieldErrors,
-  FieldValues,
-  SubmitHandler,
-  useForm,
-  UseFormRegister,
-} from 'react-hook-form';
+import { FieldErrors, FieldValues, useForm } from 'react-hook-form';
 
 interface FormContainerProps {
   step: number;
   setStep: Dispatch<SetStateAction<number>>;
-  // handleFormClick?: SubmitHandler<FieldValues>;
-  // register: UseFormRegister<FieldValues>;
-  // errors: FieldErrors<FieldValues>;
 }
 
-function FormContainer({
-  step,
-  setStep,
-  // handleFormClick,
-  // register,
-  // errors,
-}: FormContainerProps) {
+function FormContainer({ step, setStep }: FormContainerProps) {
   const [isYearlyChecked, setIsYearlyChecked] = useState<boolean>(false);
 
   const [selectedRadio, setSelectedRadio] = useState<{
@@ -94,7 +79,6 @@ function FormContainer({
           isYearlyChecked={isYearlyChecked}
           selectedCheckbox={selectedCheckbox}
           setSelectedCheckbox={setSelectedCheckbox}
-          // memoizedselectedCheckbox={memoizedselectedCheckbox}
         />
       )}
       {step === 4 && (

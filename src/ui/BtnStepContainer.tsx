@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import ButtonStep from './ButtonStep';
-import Heading from './Heading';
 
 interface BtnStepContainerProps {
   step: number;
