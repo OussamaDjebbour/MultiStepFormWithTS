@@ -28,9 +28,7 @@
 # # Environment variables
 # .env
 
-# # Build directories
-# dist/
-# build/
+
 
 # # Temporary files
 # tmp/
