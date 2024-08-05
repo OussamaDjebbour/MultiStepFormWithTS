@@ -86,7 +86,7 @@ function AddOns({
 
         <span className="flex h-5 w-5 items-center justify-center rounded border-2 border-light-gray peer-checked:border-purplish-blue peer-checked:bg-purplish-blue">
           <img
-            src="/public/assets/images/icon-checkmark.svg"
+            src="../../public/assets/images/icon-check.svg"
             alt="Check Icon"
           />
         </span>
