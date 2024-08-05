@@ -8,6 +8,12 @@ export default defineConfig({
   plugins: [react(), tsconfigPaths(), vue()],
   build: {
     outDir: 'dist',
+    rollupOptions: {
+      output: {
+        assetFileNames: 'assets/[name].[hash][extname]',
+      },
+    },
   },
+
   publicDir: 'public', // Ensure this is correct
 });
