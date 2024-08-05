@@ -5,7 +5,7 @@ function FinalStep() {
     <section className="flex flex-col items-center justify-center py-10">
       <img
         className="mb-6"
-        src="/public/assets/images/icon-thank-you.svg"
+        src="../../public/assets/images/icon-thank-you.svg"
         alt="no image"
       />
 
