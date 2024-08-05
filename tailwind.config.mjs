@@ -10,8 +10,8 @@ export default {
     },
     extend: {
       backgroundImage: {
-        'image-desktop': "url('./public/assets/images/bg-sidebar-desktop.svg')",
-        'image-mobile': "url('./public/assets/images/bg-sidebar-mobile.svg')",
+        'image-desktop': "url('/public/assets/images/bg-sidebar-desktop.svg')",
+        'image-mobile': "url('/public/assets/images/bg-sidebar-mobile.svg')",
       },
       colors: {
         // Primary
