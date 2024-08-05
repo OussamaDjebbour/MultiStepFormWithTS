@@ -35,7 +35,7 @@ function FormStep2({
           price={!isYearlyChecked ? 9 : 90}
           isYearlyChecked={isYearlyChecked}
           title="Arcade"
-          icon="../../public/assets/images/icon-arcade.svg"
+          icon="././public/assets/images/icon-arcade.svg"
           selectedRadio={selectedRadio}
           handleRadioChange={handleRadioChange}
           setSelectedRadio={setSelectedRadio}
@@ -44,7 +44,7 @@ function FormStep2({
           price={!isYearlyChecked ? 12 : 120}
           isYearlyChecked={isYearlyChecked}
           title="Advanced"
-          icon="../../public/assets/images/icon-advanced.svg"
+          icon="././public/assets/images/icon-advanced.svg"
           selectedRadio={selectedRadio}
           handleRadioChange={handleRadioChange}
           setSelectedRadio={setSelectedRadio}
@@ -53,7 +53,7 @@ function FormStep2({
           price={!isYearlyChecked ? 15 : 150}
           isYearlyChecked={isYearlyChecked}
           title="Pro"
-          icon="../../public/assets/images/icon-pro.svg"
+          icon="././public/assets/images/icon-pro.svg"
           selectedRadio={selectedRadio}
           handleRadioChange={handleRadioChange}
           setSelectedRadio={setSelectedRadio}
