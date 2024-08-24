@@ -1,5 +1,6 @@
 import { ChangeEvent, Dispatch, SetStateAction, useEffect } from 'react';
 import Heading from './Heading';
+import { useFormContext } from 'react-hook-form';
 
 interface selectedCheckbox {
   checkboxInfo: { title: string; price: number }[];
@@ -24,45 +25,97 @@ function AddOns({
   price,
   text,
   isYearlyChecked,
-  selectedCheckbox,
+  // selectedCheckbox,
   setSelectedCheckbox,
 }: AddOnsProps) {
+  const { watch, setValue } = useFormContext();
+  const toggle = watch('toggle');
+  const selectedCheckbox = watch('selectedCheckbox');
+  console.log('selectedCheckbox', selectedCheckbox);
+  // function handleCheckboxChange(e: ChangeEvent<HTMLInputElement>) {
+  //   const data = e.target.getAttribute('data-titleandprice');
+  //   const parsedData = data ? JSON.parse(data) : null;
+
+  //   if (e.target.checked) {
+  //     setSelectedCheckbox((box) => ({
+  //       ...box,
+  //       checkboxInfo: [...box.checkboxInfo, { title, price }],
+  //       totalPrice: box.totalPrice + price,
+  //     }));
+  //   } else {
+  //     setSelectedCheckbox((box) => ({
+  //       ...box,
+  //       checkboxInfo: box.checkboxInfo.filter((boxInfo) => {
+  //         return (
+  //           boxInfo.price !== parsedData.price ||
+  //           parsedData.title !== boxInfo.title
+  //         );
+  //       }),
+  //       totalPrice: box.totalPrice - price,
+  //     }));
+  //   }
+  // }
+
   function handleCheckboxChange(e: ChangeEvent<HTMLInputElement>) {
     const data = e.target.getAttribute('data-titleandprice');
     const parsedData = data ? JSON.parse(data) : null;
 
     if (e.target.checked) {
-      setSelectedCheckbox((box) => ({
-        ...box,
-        checkboxInfo: [...box.checkboxInfo, { title, price }],
-        totalPrice: box.totalPrice + price,
-      }));
+      setValue('selectedCheckbox.checkboxInfo', [
+        ...selectedCheckbox.checkboxInfo,
+        { title, price },
+      ]);
+
+      setValue(
+        'selectedCheckbox.totalPrice',
+        selectedCheckbox.totalPrice + price,
+      );
+      // setSelectedCheckbox((box) => ({
+      //   ...box,
+      //   checkboxInfo: [...box.checkboxInfo, { title, price }],
+      //   totalPrice: box.totalPrice + price,
+      // }));
     } else {
-      setSelectedCheckbox((box) => ({
-        ...box,
-        checkboxInfo: box.checkboxInfo.filter((boxInfo) => {
-          return (
-            boxInfo.price !== parsedData.price ||
-            parsedData.title !== boxInfo.title
-          );
-        }),
-        totalPrice: box.totalPrice - price,
-      }));
+      setValue(
+        'selectedCheckbox.checkboxInfo',
+        selectedCheckbox.checkboxInfo.filter(
+          (boxInfo: { title: string; price: number }) => {
+            return (
+              boxInfo.price !== parsedData.price ||
+              parsedData.title !== boxInfo.title
+            );
+          },
+        ),
+      );
+      setValue(
+        'selectedCheckbox.totalPrice',
+        selectedCheckbox.totalPrice - price,
+      );
+      // setSelectedCheckbox((box) => ({
+      //   ...box,
+      //   checkboxInfo: box.checkboxInfo.filter((boxInfo) => {
+      //     return (
+      //       boxInfo.price !== parsedData.price ||
+      //       parsedData.title !== boxInfo.title
+      //     );
+      //   }),
+      //   totalPrice: box.totalPrice - price,
+      // }));
     }
   }
 
-  useEffect(() => {
-    setSelectedCheckbox((box) => ({
-      ...box,
-      checkboxInfo: box.checkboxInfo.map((boxInfo) => {
-        return {
-          ...boxInfo,
-          ...(title === boxInfo.title ? { price } : {}),
-        };
-      }),
-      totalPrice: box.checkboxInfo.reduce((acc, curr) => acc + curr.price, 0),
-    }));
-  }, [setSelectedCheckbox, price, title]);
+  // useEffect(() => {
+  //   setSelectedCheckbox((box) => ({
+  //     ...box,
+  //     checkboxInfo: box.checkboxInfo.map((boxInfo) => {
+  //       return {
+  //         ...boxInfo,
+  //         ...(title === boxInfo.title ? { price } : {}),
+  //       };
+  //     }),
+  //     totalPrice: box.checkboxInfo.reduce((acc, curr) => acc + curr.price, 0),
+  //   }));
+  // }, [setSelectedCheckbox, price, title]);
 
   return (
     <div>
@@ -78,7 +131,9 @@ function AddOns({
           data-titleandprice={JSON.stringify({ title: title, price: price })}
           defaultChecked={
             selectedCheckbox &&
-            selectedCheckbox.checkboxInfo.some((slt) => slt.title === title)
+            selectedCheckbox.checkboxInfo?.some(
+              (slt: { title: string; price: number }) => slt.title === title,
+            )
           }
           onChange={handleCheckboxChange}
           className="peer hidden h-[1.15em] w-[1.15em] border-light-gray before:rounded-full checked:bg-red-500"
@@ -94,7 +149,7 @@ function AddOns({
         </div>
 
         <span className="ml-auto font-[500] text-cool-gray">
-          +${price}/{!isYearlyChecked ? 'mo' : 'yr'}
+          +${price}/{!toggle ? 'mo' : 'yr'}
         </span>
       </label>
     </div>

@@ -1,13 +1,26 @@
 import Heading from './Heading';
-import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
+import {
+  FieldErrors,
+  FieldValues,
+  useFormContext,
+  UseFormRegister,
+} from 'react-hook-form';
 import LabelAndErrorInput from './LabelAndErrorInput';
 
 interface FormStep1Props {
-  register: UseFormRegister<FieldValues>;
-  errors: FieldErrors<FieldValues>;
+  register?: UseFormRegister<FieldValues>;
+  errors?: FieldErrors<FieldValues>;
+  // register: UseFormRegister<FieldValues>;
+  // errors: FieldErrors<FieldValues>;
 }
 
-function FormStep1({ register, errors }: FormStep1Props) {
+function FormStep1() {
+  // function FormStep1({ register, errors }: FormStep1Props) {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+
   return (
     <>
       <Heading as="h1" title="Personal info" />
@@ -20,7 +33,7 @@ function FormStep1({ register, errors }: FormStep1Props) {
         <div>
           <LabelAndErrorInput
             labelName="Name"
-            errorMessage={errors?.name?.message as string}
+            errorMessage={errors?.name?.message}
           />
           <input
             className={`w-full rounded-lg border border-light-gray px-4 py-1 outline-0 hover:cursor-pointer hover:border-marine-blue md:py-2 ${errors?.name?.message ? 'border-strawberry-red' : ''} `}
@@ -37,7 +50,7 @@ function FormStep1({ register, errors }: FormStep1Props) {
         <div>
           <LabelAndErrorInput
             labelName="Email Address"
-            errorMessage={errors?.email?.message as string}
+            errorMessage={errors?.email?.message}
           />
           <input
             className={`w-full rounded-lg border border-light-gray px-4 py-1 outline-0 hover:cursor-pointer hover:border-marine-blue md:py-2 ${errors?.email?.message ? 'border-strawberry-red' : ''} `}

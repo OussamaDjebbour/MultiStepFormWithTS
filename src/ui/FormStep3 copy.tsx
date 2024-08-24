@@ -2,7 +2,6 @@ import { Dispatch, SetStateAction } from 'react';
 import AddOns from './AddOns';
 import Heading from './Heading';
 import { useFormContext } from 'react-hook-form';
-import { MonthlyAddOns } from './FormStep2';
 
 interface selectedCheckbox {
   checkboxInfo: { title: string; price: number }[];
@@ -38,7 +37,7 @@ function FormStep3({
         <AddOns
           title="Online service"
           text="Access to multiplayer games"
-          price={!toggle ? MonthlyAddOns.onlineService : 10}
+          price={!toggle ? 1 : 10}
           isYearlyChecked={isYearlyChecked}
           selectedCheckbox={selectedCheckbox}
           setSelectedCheckbox={setSelectedCheckbox}
@@ -46,7 +45,7 @@ function FormStep3({
         <AddOns
           title="Larger storage"
           text="Extra 1TB of cloud save"
-          price={!toggle ? MonthlyAddOns.largerStorage : 20}
+          price={!toggle ? 2 : 20}
           isYearlyChecked={isYearlyChecked}
           selectedCheckbox={selectedCheckbox}
           setSelectedCheckbox={setSelectedCheckbox}
@@ -54,7 +53,7 @@ function FormStep3({
         <AddOns
           title="Customizable profile"
           text="Custom theme on your profile"
-          price={!toggle ? MonthlyAddOns.customizableProfile : 20}
+          price={!toggle ? 2 : 20}
           isYearlyChecked={isYearlyChecked}
           selectedCheckbox={selectedCheckbox}
           setSelectedCheckbox={setSelectedCheckbox}

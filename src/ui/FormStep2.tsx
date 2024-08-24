@@ -2,9 +2,44 @@ import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 
 import Heading from './Heading';
 import PlanRadioBtn from './PlanRadioBtn';
+import { useFormContext } from 'react-hook-form';
+import transformString from 'src/helpers/TransformString';
+
+export const MonthlyPlan = {
+  arcade: 9,
+  advanced: 12,
+  pro: 15,
+} as const;
+
+export const YearlyPlan = {
+  arcade: 90,
+  advanced: 120,
+  pro: 150,
+} as const;
+
+export const MonthlyAddOns = {
+  onlineService: 1,
+  largerStorage: 2,
+  customizableProfile: 2,
+} as const;
+
+export const YearlyAddOns = {
+  onlineService: 10,
+  largerStorage: 20,
+  customizableProfile: 20,
+} as const;
+
+export type Plans = keyof typeof YearlyPlan;
+export type AddOns = keyof typeof YearlyAddOns;
+
+interface SelectedRadioBtn {
+  title: Plans;
+  price: number;
+  // other properties...
+}
 
 interface selectedRadio {
-  title: string;
+  title: Plans;
   price: number;
 }
 
@@ -23,6 +58,11 @@ function FormStep2({
   handleRadioChange,
   setSelectedRadio,
 }: Step2Props) {
+  const { register, watch, setValue } = useFormContext();
+  const toggle = watch('toggle');
+  const selectedRadioBtn = watch('selectedRadioBtn');
+  const selectedCheckbox = watch('selectedCheckbox');
+
   return (
     <section>
       <Heading as="h1" title="Select your plan" />
@@ -32,27 +72,30 @@ function FormStep2({
       />
       <div className="flex flex-col gap-2.5 min-[600px]:gap-4 md:mt-10 md:flex-row md:justify-between">
         <PlanRadioBtn
-          price={!isYearlyChecked ? 9 : 90}
+          // price={!isYearlyChecked ? MonthlyPlan.arcade : 90}
+          price={!toggle ? MonthlyPlan.arcade : 90}
           isYearlyChecked={isYearlyChecked}
-          title="Arcade"
+          title="arcade"
           icon="/images/icon-arcade.svg"
           selectedRadio={selectedRadio}
           handleRadioChange={handleRadioChange}
           setSelectedRadio={setSelectedRadio}
         />
         <PlanRadioBtn
-          price={!isYearlyChecked ? 12 : 120}
+          // price={!isYearlyChecked ? MonthlyPlan.advanced : 120}
+          price={!toggle ? MonthlyPlan.advanced : 120}
           isYearlyChecked={isYearlyChecked}
-          title="Advanced"
+          title="advanced"
           icon="/images/icon-advanced.svg"
           selectedRadio={selectedRadio}
           handleRadioChange={handleRadioChange}
           setSelectedRadio={setSelectedRadio}
         />
         <PlanRadioBtn
-          price={!isYearlyChecked ? 15 : 150}
+          // price={!isYearlyChecked ? MonthlyPlan.pro : 150}
+          price={!toggle ? MonthlyPlan.pro : 150}
           isYearlyChecked={isYearlyChecked}
-          title="Pro"
+          title="pro"
           icon="/images/icon-pro.svg"
           selectedRadio={selectedRadio}
           handleRadioChange={handleRadioChange}
@@ -64,17 +107,120 @@ function FormStep2({
         <div className="flex items-center gap-8">
           <input
             className="peer hidden"
-            id="cb2"
+            id="toggle"
+            type="checkbox"
+            {...register('toggle', {
+              onChange: (e) => {
+                setValue(
+                  'selectedRadioBtn.price',
+                  e.target.checked
+                    ? YearlyPlan[
+                        selectedRadioBtn.title as keyof typeof YearlyPlan
+                      ]
+                    : MonthlyPlan[
+                        selectedRadioBtn.title as keyof typeof MonthlyPlan
+                      ],
+                );
+
+                setValue(
+                  'selectedCheckbox.checkboxInfo',
+                  selectedCheckbox.checkboxInfo.map(
+                    (checkbox: { title: string; price: number }) => {
+                      console.log('checkbox', checkbox);
+                      console.log(
+                        'checkboxmmmmmmmm',
+                        transformString(checkbox?.title),
+                      );
+                      return {
+                        ...checkbox,
+                        price: e.target.checked
+                          ? YearlyAddOns[
+                              transformString(
+                                checkbox.title,
+                              ) as keyof typeof YearlyAddOns
+                            ]
+                          : MonthlyAddOns[
+                              transformString(
+                                checkbox.title,
+                              ) as keyof typeof MonthlyAddOns
+                            ],
+                      };
+                    },
+                  ),
+                );
+
+                setValue(
+                  'selectedCheckbox.totalPrice',
+                  selectedCheckbox.checkboxInfo.reduce(
+                    (total: number, curr: { title: string; price: number }) =>
+                      total + curr.price,
+                    0,
+                  ),
+                );
+
+                // setValue(
+                //   'selectedCheckbox.checkboxInfo',
+                //   e.target.checked
+                //     ? YearlyAddOns[
+                //         selectedCheckbox.title as keyof typeof YearlyAddOns
+                //       ]
+                //     : MonthlyAddOns[
+                //         selectedCheckbox.title as keyof typeof MonthlyAddOns
+                //       ],
+                // );
+
+                // setValue(
+                //   'selectedRadioBtn.price',
+                //   e.target.checked
+                //     ? YearlyPlan[selectedRadioBtn.title]
+                //     : MonthlyPlan[selectedRadioBtn.title],
+                // );
+                // setSelectedRadio({
+                //   ...selectedRadio,
+                //   price: e.target.checked
+                //     ? YearlyPlan[selectedRadio.title]
+                //     : MonthlyPlan[selectedRadio.title],
+                // });
+                // setSelectedRadio({
+                //   ...selectedRadio,
+                //   price: e.target.checked
+                //     ? YearlyPlan[selectedRadio.title]
+                //     : MonthlyPlan[selectedRadio.title],
+                // });
+              },
+            })}
+
+            // checked={isYearlyChecked}
+            // onChange={(e) => {
+            //   setSelectedRadio({
+            //     ...selectedRadio,
+            //     price: e.target.checked
+            //       ? YearlyPlan[selectedRadio.title]
+            //       : MonthlyPlan[selectedRadio.title],
+            //   });
+            //   setIsYearlyChecked((isYearlyChecked) => !isYearlyChecked);
+            // }}
+          />
+
+          {/* <input
+            className="peer hidden"
+            id="toggle"
             type="checkbox"
             checked={isYearlyChecked}
-            onChange={() =>
-              setIsYearlyChecked((isYearlyChecked) => !isYearlyChecked)
-            }
-          />
+            onChange={(e) => {
+              setSelectedRadio({
+                ...selectedRadio,
+                price: e.target.checked
+                  ? YearlyPlan[selectedRadio.title]
+                  : MonthlyPlan[selectedRadio.title],
+              });
+              setIsYearlyChecked((isYearlyChecked) => !isYearlyChecked);
+            }}
+          /> */}
           <span className="font-bold text-marine-blue">Monthly</span>
           <label
             className="relative inline-block h-[2em] w-[4em] cursor-pointer rounded-[2em] border border-solid border-[#e8eae9] bg-['#fbfbfb'] p-0.5 shadow outline-0 transition-all duration-500 ease-linear before:relative before:hidden before:h-full before:w-1/2 before:content-[''] after:relative after:left-0 after:block after:h-full after:w-1/2 after:rounded-[2em] after:bg-[#fbfbfb] after:content-[''] after:[transition:left_0.3s_cubic-bezier(0.175,0.885,0.32,1.275),padding_0.3s_ease,margin_0.3s_ease] hover:after:will-change-[padding] active:shadow-[inset_0_0_0_2em_#e8eae9] active:after:pr-[.8em] peer-checked:bg-[#86d993] peer-checked:after:left-1/2 peer-checked:active:shadow-none peer-checked:active:after:pl-[-.8em]"
-            htmlFor="cb2"
+            htmlFor="toggle"
           ></label>
           <span className="font-[500] text-cool-gray">Yearly</span>
         </div>

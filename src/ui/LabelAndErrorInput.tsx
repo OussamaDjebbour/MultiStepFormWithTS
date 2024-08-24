@@ -1,6 +1,11 @@
+import { FieldError, FieldErrorsImpl, Merge } from 'react-hook-form';
+
 interface LabelAndErrorInputProps {
   labelName: string;
-  errorMessage?: string;
+  errorMessage?:
+    | string
+    | FieldError
+    | Merge<FieldError, FieldErrorsImpl<Record<string, unknown>>>;
 }
 
 function LabelAndErrorInput({
