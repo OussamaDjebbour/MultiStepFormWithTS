@@ -1,21 +1,8 @@
 import Heading from './Heading';
-import {
-  FieldErrors,
-  FieldValues,
-  useFormContext,
-  UseFormRegister,
-} from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import LabelAndErrorInput from './LabelAndErrorInput';
 
-interface FormStep1Props {
-  register?: UseFormRegister<FieldValues>;
-  errors?: FieldErrors<FieldValues>;
-  // register: UseFormRegister<FieldValues>;
-  // errors: FieldErrors<FieldValues>;
-}
-
 function FormStep1() {
-  // function FormStep1({ register, errors }: FormStep1Props) {
   const {
     register,
     formState: { errors },

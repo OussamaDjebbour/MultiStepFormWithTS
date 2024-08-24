@@ -1,31 +1,9 @@
-import { Dispatch, SetStateAction } from 'react';
 import AddOns from './AddOns';
 import Heading from './Heading';
 import { useFormContext } from 'react-hook-form';
 import { MonthlyAddOns } from './FormStep2';
 
-interface selectedCheckbox {
-  checkboxInfo: { title: string; price: number }[];
-  totalPrice: number;
-}
-
-interface Step3Props {
-  isYearlyChecked: boolean;
-  selectedCheckbox: selectedCheckbox;
-
-  setSelectedCheckbox: Dispatch<
-    SetStateAction<{
-      checkboxInfo: { title: string; price: number }[];
-      totalPrice: number;
-    }>
-  >;
-}
-
-function FormStep3({
-  isYearlyChecked,
-  selectedCheckbox,
-  setSelectedCheckbox,
-}: Step3Props) {
+function FormStep3() {
   const { watch } = useFormContext();
   const toggle = watch('toggle');
 
@@ -39,25 +17,16 @@ function FormStep3({
           title="Online service"
           text="Access to multiplayer games"
           price={!toggle ? MonthlyAddOns.onlineService : 10}
-          isYearlyChecked={isYearlyChecked}
-          selectedCheckbox={selectedCheckbox}
-          setSelectedCheckbox={setSelectedCheckbox}
         />
         <AddOns
           title="Larger storage"
           text="Extra 1TB of cloud save"
           price={!toggle ? MonthlyAddOns.largerStorage : 20}
-          isYearlyChecked={isYearlyChecked}
-          selectedCheckbox={selectedCheckbox}
-          setSelectedCheckbox={setSelectedCheckbox}
         />
         <AddOns
           title="Customizable profile"
           text="Custom theme on your profile"
           price={!toggle ? MonthlyAddOns.customizableProfile : 20}
-          isYearlyChecked={isYearlyChecked}
-          selectedCheckbox={selectedCheckbox}
-          setSelectedCheckbox={setSelectedCheckbox}
         />
       </div>
     </section>
