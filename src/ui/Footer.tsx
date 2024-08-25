@@ -22,7 +22,7 @@ function Footer({ step, prevStep }: FooterProps) {
       )}
       <button
         type="submit"
-        className="cursor-pointer bg-marine-blue px-4 py-2 text-White hover:bg-purplish-blue"
+        className="cursor-pointer rounded-lg bg-marine-blue px-4 py-2 text-White hover:bg-purplish-blue"
       >
         {step === 4 ? 'Confirm' : 'Next Step'}
       </button>

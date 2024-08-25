@@ -12,7 +12,7 @@ function FormStep3() {
       <Heading as="h1" title="Pick add-ons" />
       <Heading as="h2" title="Add-ons help enhance your gaming experience." />
 
-      <div className="flex flex-col gap-2.5 min-[600px]:mt-8 min-[600px]:gap-6 md:max-w-[500px]">
+      <div className="flex flex-col gap-2.5 min-[600px]:mt-8 min-[600px]:gap-3 md:max-w-[500px]">
         <AddOns
           title="Online service"
           text="Access to multiplayer games"

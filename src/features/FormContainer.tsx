@@ -53,7 +53,7 @@ const FormContainer: React.FC<FormContainerProps> = ({ step, setStep }) => {
         onSubmit={methods.handleSubmit(onSubmit)}
         className="flex w-[92%] flex-grow flex-col justify-between gap-10 rounded-xl min-[500px]:w-[80%] min-[600px]:w-4/6 md:m-auto md:flex md:h-full md:min-w-[400px] md:flex-col md:gap-0 md:px-0 md:py-0 md:pt-12"
       >
-        <div className="w-full bg-White px-5 py-8">
+        <div className="w-full bg-White px-5 py-8 md:py-0">
           {step === 1 && <FormStep1 />}
           {step === 2 && <FormStep2 />}
           {step === 3 && <FormStep3 />}
