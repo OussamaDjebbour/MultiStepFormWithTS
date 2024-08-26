@@ -34,7 +34,7 @@ function FormStep2({
   isYearlyChecked,
   setIsYearlyChecked,
   selectedRadio,
-  handleRadioChange,
+  // handleRadioChange,
   setSelectedRadio,
 }: Step2Props) {
   return (
@@ -47,30 +47,30 @@ function FormStep2({
       <div className="flex flex-col gap-2.5 min-[600px]:gap-4 md:mt-10 md:flex-row md:justify-between">
         <PlanRadioBtn
           price={!isYearlyChecked ? MonthlyPlan.arcade : 90}
-          isYearlyChecked={isYearlyChecked}
+          // isYearlyChecked={isYearlyChecked}
           title="arcade"
           icon="/images/icon-arcade.svg"
-          selectedRadio={selectedRadio}
-          handleRadioChange={handleRadioChange}
-          setSelectedRadio={setSelectedRadio}
+          // selectedRadio={selectedRadio}
+          // handleRadioChange={handleRadioChange}
+          // setSelectedRadio={setSelectedRadio}
         />
         <PlanRadioBtn
           price={!isYearlyChecked ? MonthlyPlan.advanced : 120}
-          isYearlyChecked={isYearlyChecked}
+          // isYearlyChecked={isYearlyChecked}
           title="advanced"
           icon="/images/icon-advanced.svg"
-          selectedRadio={selectedRadio}
-          handleRadioChange={handleRadioChange}
-          setSelectedRadio={setSelectedRadio}
+          // selectedRadio={selectedRadio}
+          // handleRadioChange={handleRadioChange}
+          // setSelectedRadio={setSelectedRadio}
         />
         <PlanRadioBtn
           price={!isYearlyChecked ? MonthlyPlan.pro : 150}
-          isYearlyChecked={isYearlyChecked}
+          // isYearlyChecked={isYearlyChecked}
           title="pro"
           icon="/images/icon-pro.svg"
-          selectedRadio={selectedRadio}
-          handleRadioChange={handleRadioChange}
-          setSelectedRadio={setSelectedRadio}
+          // selectedRadio={selectedRadio}
+          // handleRadioChange={handleRadioChange}
+          // setSelectedRadio={setSelectedRadio}
         />
       </div>
 

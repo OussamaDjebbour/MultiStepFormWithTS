@@ -11,7 +11,7 @@ interface AddOnsProps {
   title: string;
   price: number;
   text: string;
-  isYearlyChecked: boolean;
+  // isYearlyChecked: boolean;
   selectedCheckbox: selectedCheckbox;
   setSelectedCheckbox: Dispatch<
     SetStateAction<{
@@ -24,7 +24,7 @@ function AddOns({
   title,
   price,
   text,
-  isYearlyChecked,
+  // isYearlyChecked,
   selectedCheckbox,
   setSelectedCheckbox,
 }: AddOnsProps) {

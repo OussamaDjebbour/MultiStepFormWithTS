@@ -1,7 +1,7 @@
 import Heading from './Heading';
 import PlanRadioBtn from './PlanRadioBtn';
 import { useFormContext } from 'react-hook-form';
-import transformString from 'src/helpers/TransformString';
+import transformString from 'src/helpers/transformString';
 
 export const MonthlyPlan = {
   arcade: 9,
@@ -119,12 +119,22 @@ function FormStep2() {
             })}
           />
 
-          <span className="font-bold text-marine-blue">Monthly</span>
+          <span
+            className={`cursor-pointer ${toggle ? 'font-[500] text-cool-gray hover:text-purplish-blue' : 'font-bold text-marine-blue'} `}
+            onClick={() => setValue('toggle', false)}
+          >
+            Monthly
+          </span>
           <label
             className="relative inline-block h-[2em] w-[4em] cursor-pointer rounded-[2em] border border-solid border-[#e8eae9] bg-['#fbfbfb'] p-0.5 shadow outline-0 transition-all duration-500 ease-linear before:relative before:hidden before:h-full before:w-1/2 before:content-[''] after:relative after:left-0 after:block after:h-full after:w-1/2 after:rounded-[2em] after:bg-[#fbfbfb] after:content-[''] after:[transition:left_0.3s_cubic-bezier(0.175,0.885,0.32,1.275),padding_0.3s_ease,margin_0.3s_ease] hover:after:will-change-[padding] active:shadow-[inset_0_0_0_2em_#e8eae9] active:after:pr-[.8em] peer-checked:bg-[#86d993] peer-checked:after:left-1/2 peer-checked:active:shadow-none peer-checked:active:after:pl-[-.8em]"
             htmlFor="toggle"
           ></label>
-          <span className="font-[500] text-cool-gray">Yearly</span>
+          <span
+            className={`cursor-pointer ${toggle ? 'font-bold text-marine-blue' : 'font-[500] text-cool-gray hover:text-purplish-blue'} `}
+            onClick={() => setValue('toggle', true)}
+          >
+            Yearly
+          </span>
         </div>
       </div>
     </section>
